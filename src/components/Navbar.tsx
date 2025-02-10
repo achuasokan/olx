@@ -2,7 +2,7 @@ import olx_logo from '../assets/olx.png'
 import lens from '../assets/lens.png'
 import arrow from '../assets/arrow.png'
 import search from '../assets/search.png'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../context/AuthContext'
 
 
@@ -16,7 +16,9 @@ const Navbar = ({ onloginPop }: popUp) => {
   // const navigate = useNavigate()
   return (
     <div className='flex p-4 ml-5 bg-slate-100 shadow-md '>
+      <Link to='/'>
       <img src={olx_logo} className="w-11 h-9" alt='olx logo' />
+      </Link>
 
       <div className='flex border-2 border-black border-spacing-1 w-74 p-2 ml-5 bg-white'>
         <img src={lens} className='w-6 h-5 mt-1' alt='lens logo' />
@@ -45,8 +47,10 @@ const Navbar = ({ onloginPop }: popUp) => {
         )}
       </div>
 
-      <div className=' w-28 flex h-12 p-2 ml-6 cursor-pointer rounded-full border border-yellow-500'>
+      <div className=' w-28 flex h-12 p-2 ml-6 rounded-full border border-yellow-500'>
+        <Link to='/addProduct'>
         <h1 className='font-bold ml-5'>+ SELL</h1>
+        </Link>
       </div>
     </div>
   )

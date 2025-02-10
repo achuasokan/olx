@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react"
 import Menubar from "./Menubar"
 import ProductList from "./ProductList"
+import { db } from '../services/firebase'; // Import your Firestore configuration
+import { collection, getDocs } from 'firebase/firestore';
 
 
 const Home = () => {
 
-  const [product,setProducts] = useState([])
+  const [products,setProducts] = useState([])
   
 
-  const getProducts = () => {
-    fetch('https://fakestoreapi.com/products')
-            .then(res=>res.json())
-            .then(json=> setProducts(json))
-  }
+  const getProducts = async () => {
+    const productsCollection = collection(db, 'products');
+    const productSnapshot = await getDocs(productsCollection);
+    const productList = productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    setProducts(productList);
+  };
 
   useEffect(()=> {
     getProducts()
@@ -21,7 +24,7 @@ const Home = () => {
   return (
     <>
     <Menubar />
-    <ProductList  products={product}/>
+    <ProductList  products={products}/>
     </>
   )
 }

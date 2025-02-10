@@ -1,5 +1,7 @@
 import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { db } from '../services/firebase'; // Import your Firestore instance
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -7,11 +9,15 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
-    };
+     const productRef = doc(db, 'products', id);
+     const productSnap = await getDoc(productRef);
 
+     if(productSnap.exists()) {
+      setProduct(productSnap.data())
+     } else {
+      console.log('no such document');
+     }
+    };
     fetchProduct();
   }, [id]);
 
