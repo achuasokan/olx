@@ -6,6 +6,7 @@ import ProductList from "./ProductList"
 const Home = () => {
 
   const [product,setProducts] = useState([])
+  
 
   const getProducts = () => {
     fetch('https://fakestoreapi.com/products')
