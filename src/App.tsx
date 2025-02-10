@@ -6,9 +6,10 @@ import { Route, Routes } from "react-router-dom"
 import Home from "./components/Home"
 import Footer from "./components/Footer"
 import ProductDetail from "./components/ProductDetail"
-import AddProduct from "./pages/addProduct"
+import AddProduct from "./pages/AddProduct"
 import ProtectedRoute from "./components/ProtectedRoute"
-
+import { ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   const [loginPop,setLoginPop] = useState(false)
@@ -20,7 +21,7 @@ const App = () => {
     <Navbar  onloginPop={() => setLoginPop(true)} />
       
     { loginPop && <Login  setLoginPop={setLoginPop}/> }
-    
+    <ToastContainer theme='dark'/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Detail/:id' element={<ProductDetail />} />

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { db } from '../services/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
-
+import { toast } from "react-toastify"
 
 const AddProduct = () => {
 
@@ -52,7 +52,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         image: imageUrl,
       };
 
-      await addDoc(collection(db, 'products'), productData); //~ Add product to Firestore
+      await addDoc(collection(db, 'products'), productData); //~ Add product to FireStore
 
        // Reset form
        setTitle('');
@@ -61,13 +61,15 @@ const handleSubmit = async (e: React.FormEvent) => {
        setDescription('');
        setImage(null);
        setImagePreview(null);
+
+       toast.success('Product added successful')
        navigate('/')
 
     } catch (error) {
-      console.log(`Error uploading image or saving product`, error);
+      toast.error(`Error uploading image or saving product`);
     }
   } else {
-    alert('Please select an image before submitting.');
+    toast.error('Please select an image before submitting.');
   }
 }
 
@@ -82,7 +84,7 @@ return (
     <input type='file' accept="image/*"  onChange={handleImage} className='border p-2 mb-2 w-full' />
 
     {imagePreview && (
-      <img src={imagePreview} alt='Image Preview' className='w-42 h-42 mb-2' />
+      <img src={imagePreview} alt='Image Preview' className='w-96 h-96 mb-2' />
     )}
     <button type='submit' className='bg-blue-600 text-white p-2'>Submit</button>
   </form>

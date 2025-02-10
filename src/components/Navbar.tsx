@@ -4,7 +4,7 @@ import arrow from '../assets/arrow.png'
 import search from '../assets/search.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../context/AuthContext'
-
+import { toast } from "react-toastify"
 
 type popUp = {
   onloginPop: any
@@ -16,7 +16,7 @@ const Navbar = ({ onloginPop }: popUp) => {
 
   const handleSellClick = () => {
     if(!user) {
-      alert('Please login to sell a product')
+      toast.error('Please login to sell a product')
     } else {
       navigate('/addproduct')
     }
