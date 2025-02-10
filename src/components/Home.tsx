@@ -5,7 +5,8 @@ import { db } from '../services/firebase'; // Import your Firestore configuratio
 import { collection, getDocs } from 'firebase/firestore';
 
 
-const Home = () => {
+
+const Home = ({search}:any) => {
 
   const [products,setProducts] = useState([])
   
@@ -24,7 +25,7 @@ const Home = () => {
   return (
     <>
     <Menubar />
-    <ProductList  products={products}/>
+    <ProductList  products={products} searches={search}/>
     </>
   )
 }

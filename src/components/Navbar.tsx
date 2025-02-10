@@ -6,11 +6,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../context/AuthContext'
 import { toast } from "react-toastify"
 
-type popUp = {
-  onloginPop: any
-}
 
-const Navbar = ({ onloginPop }: popUp) => {
+
+const Navbar = ({ onloginPop, setSearch }: any) => {
   const { user, logout } = userAuth()
   const navigate = useNavigate()
 
@@ -35,7 +33,7 @@ const Navbar = ({ onloginPop }: popUp) => {
       </div>
 
       <div className='flex h-12 ml-4 border-2 bg-white'>
-        <input placeholder='Search: Cars, Mobile phones and more' className='ml-3 w-[700px] outline-none' />
+        <input onChange={(e)=> setSearch(e.target.value)} placeholder='Search: Cars, Mobile phones and more' className='ml-3 w-[700px] outline-none' />
         <img src={search} alt='' className='' />
       </div>
 

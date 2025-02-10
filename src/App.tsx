@@ -13,17 +13,17 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   const [loginPop,setLoginPop] = useState(false)
-
+  const [search, setSearch] = useState('')
   return(
     <>
     <AuthProvider>
 
-    <Navbar  onloginPop={() => setLoginPop(true)} />
+    <Navbar  onloginPop={() => setLoginPop(true)} setSearch={setSearch}/>
       
     { loginPop && <Login  setLoginPop={setLoginPop}/> }
     <ToastContainer theme='dark'/>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home  search={search}/>} />
         <Route path='/Detail/:id' element={<ProductDetail />} />
         <Route path='/addProduct' element={<ProtectedRoute>  <AddProduct /> </ProtectedRoute>  } />
       </Routes>
