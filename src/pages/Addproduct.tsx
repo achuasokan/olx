@@ -18,6 +18,7 @@ const [image, setImage] = useState<File | null>(null)
 const [imagePreview, setImagePreview] = useState<string | null>(null)
 
 
+//~ To handle Image selection
 const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0]
   if(file) {
@@ -30,6 +31,7 @@ const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
   }
 }
 
+//~ handling form submission
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   if(image) {
@@ -39,7 +41,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dlpqrtxee/image/upload`, 
+        `https://api.cloudinary.com/v1_1/dlpqrtxee/image/upload`,    //~ upload the image to the cloudinary
         formData
       );
       const imageUrl = response.data.secure_url;    //~ get the imageUrl

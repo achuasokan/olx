@@ -16,7 +16,6 @@ const Login = ({setLoginPop}: popUp) => {
  const handleLogin = async () => {
   try {
     await loginWithGoogle()
-    console.log('Login successful, redirecting...')
     navigate('/')
     window.location.reload()
   } catch (error) {

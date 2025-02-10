@@ -12,6 +12,7 @@ const ProductDetail = () => {
      const productRef = doc(db, 'products', id);
      const productSnap = await getDoc(productRef);
 
+     //~ Checking  if the product exists
      if(productSnap.exists()) {
       setProduct(productSnap.data())
      } else {
