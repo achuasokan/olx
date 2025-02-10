@@ -7,6 +7,7 @@ import Home from "./components/Home"
 import Footer from "./components/Footer"
 import ProductDetail from "./components/ProductDetail"
 import AddProduct from "./pages/addProduct"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Detail/:id' element={<ProductDetail />} />
-        <Route path='/addProduct' element={<AddProduct /> } />
+        <Route path='/addProduct' element={<ProtectedRoute>  <AddProduct /> </ProtectedRoute>  } />
       </Routes>
 
       <Footer />

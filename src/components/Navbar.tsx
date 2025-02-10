@@ -12,8 +12,16 @@ type popUp = {
 
 const Navbar = ({ onloginPop }: popUp) => {
   const { user, logout } = userAuth()
+  const navigate = useNavigate()
 
-  // const navigate = useNavigate()
+  const handleSellClick = () => {
+    if(!user) {
+      alert('Please login to sell a product')
+    } else {
+      navigate('/addproduct')
+    }
+  }
+
   return (
     <div className='flex p-4 ml-5 bg-slate-100 shadow-md '>
       <Link to='/'>
@@ -47,10 +55,8 @@ const Navbar = ({ onloginPop }: popUp) => {
         )}
       </div>
 
-      <div className=' w-28 flex h-12 p-2 ml-6 rounded-full border border-yellow-500'>
-        <Link to='/addProduct'>
+      <div onClick={handleSellClick} className=' w-28 flex h-12 p-2 ml-6 rounded-full border border-yellow-500 cursor-pointer'>   
         <h1 className='font-bold ml-5'>+ SELL</h1>
-        </Link>
       </div>
     </div>
   )

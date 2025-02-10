@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 const AddProduct = () => {
 
   const navigate = useNavigate()
+
+  
 const [title, setTitle] = useState('')
 const [category, setCategory] = useState('')
 const [price, setPrice] = useState('')
